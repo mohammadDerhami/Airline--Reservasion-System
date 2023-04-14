@@ -139,45 +139,45 @@ public class Admin {
                 case "1": {
                     System.out.println("enter new FlightId : ");
                     flights.flight[indexOfFlight].setFlightId(scanner.next());
-                    System.out.println("successful");
+                    System.out.println("successful :)");
                     break;
 
                 }
                 case "2": {
                     System.out.println("enter new Origin : ");
                     flights.flight[indexOfFlight].setOrigin(scanner.next());
-                    System.out.println("successful");
+                    System.out.println("successful :)");
                     break;
                 }
                 case "3": {
                     System.out.println("enter new Destination : ");
                     flights.flight[indexOfFlight].setDestination(scanner.next());
-                    System.out.println("successful");
+                    System.out.println("successful :)");
                     break;
                 }
                 case "4": {
                     System.out.println("enter new Date : ");
                     flights.flight[indexOfFlight].setDate(scanner.next());
-                    System.out.println("successful");
+                    System.out.println("successful :)");
                     break;
 
                 }
                 case "5": {
                     System.out.println("enter new Time : ");
                     flights.flight[indexOfFlight].setTime(scanner.next());
-                    System.out.println("successful");
+                    System.out.println("successful :)");
                     break;
                 }
                 case "6": {
                     System.out.println("enter new Price : ");
                     flights.flight[indexOfFlight].setPrice(scanner.next());
-                    System.out.println("successful");
+                    System.out.println("successful :)");
                     break;
                 }
                 case "7": {
                     System.out.println("enter new Seats : ");
                     flights.flight[indexOfFlight].setSeats(scanner.next());
-                    System.out.println("successful");
+                    System.out.println("successful :)");
                     break;
 
                 }
@@ -199,25 +199,16 @@ public class Admin {
 
     public void adminRemove(Flights flights) {
 
-        System.out.println("enter id of flight : ");
-        String idOfFlight = scanner.next();
-        for (int i = 0; i < flights.flight.length; i++) {
-            if (flights.flight != null) {
-                if (flights.flight[i].getFlightId().equals(idOfFlight)) {
-                    flights.flight[i] = null;
-                    System.out.println("successful");
-                    return;
-
-
-                } else {
-                    System.out.println("Wrong id !!!");
-                    adminRemove(flights);
-                }
-
-            }
-
-
+        int indexOfFlight = searchIdOfFlight(flights);
+        if(indexOfFlight == -1)
+        {
+            System.out.println("Wrong id !!!");
+            adminRemove(flights);
         }
+        flights.flight[indexOfFlight] = null;
+        System.out.println("successful :)");
+        return;
+
 
     }
     public int searchIdOfFlight(Flights flights)
