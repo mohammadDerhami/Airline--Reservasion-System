@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class MainMenu
 {
+    public int counter = 0;
     Scanner scanner = new Scanner(System.in);
     public void printMenu()
     {
@@ -15,7 +16,7 @@ public class MainMenu
                 "    <1> Sign in\n" +
                 "    <2> Sign up ");
     }
-    public void switchMethod()
+    public void switchMethod(Passengers[] passengers)
     {
 
         while (true)
@@ -30,13 +31,15 @@ public class MainMenu
 
                 }
                 case "2": {
+                    SignUp signUp = new SignUp();
+                    signUp.SignUpMethod( passengers, counter);
 
-
+                        counter++;
                     break;
                 }
                 default: {
                     System.out.println("Wrong number ");
-                    switchMethod();
+                    switchMethod( passengers);
                     break;
 
                 }

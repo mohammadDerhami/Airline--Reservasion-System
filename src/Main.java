@@ -2,9 +2,11 @@ package src;
 
 public class Main
 {
+    public static Passengers[] passengers = new Passengers[20];
     public static void main(String[] args) {
         MainMenu mainMenu = new MainMenu();
-        mainMenu.switchMethod();
+        mainMenu.switchMethod(passengers);
+
     }
 
 }
