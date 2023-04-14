@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Passengers {
     private String userName;
     private String password;
+    private double credit = 0 ;
     Scanner scanner = new Scanner(System.in);
 
     public void printPassengersMenu()
@@ -53,11 +54,13 @@ public class Passengers {
                 }
                 case "6":
                 {
-
+                    passengersAddCharge();
+                    passengersSwitch();
+                    break;
                 }
                 case "0":
                 {
-
+                    return;
                 }
             }
         }
@@ -76,11 +79,26 @@ public class Passengers {
                     System.out.println("enter new password : ");
                     setPassword(scanner.next());
                     System.out.println("your password is change :)");
-
-                    return;
-
+                    passengersSwitch();
+                }
+                else
+                {
+                    System.out.println("password is Wrong !!! ");
+                    passengersChangePassword();
                 }
 
+
+
+    }
+    public void passengersAddCharge()
+    {
+
+
+        System.out.println("how much do you want to increase your credit ?? ");
+        int increaseCredit = scanner.nextInt();
+        credit = credit + increaseCredit;
+
+        System.out.println("your credit is "+credit+" $");
 
 
     }
@@ -100,5 +118,13 @@ public class Passengers {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public double getCredit() {
+        return credit;
+    }
+
+    public void setCredit(double credit) {
+        this.credit = credit;
     }
 }
