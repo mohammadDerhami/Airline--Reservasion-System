@@ -3,9 +3,10 @@ package src;
 public class Main
 {
     public static Passengers[] passengers = new Passengers[20];
+    public static Admin admin = new Admin();
     public static void main(String[] args) {
         MainMenu mainMenu = new MainMenu();
-        mainMenu.switchMethod(passengers);
+        mainMenu.switchMethod(passengers , admin);
 
     }
 

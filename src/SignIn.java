@@ -1,4 +1,51 @@
 package src;
 
+import java.util.Scanner;
+
 public class SignIn {
+    public Scanner scanner = new Scanner(System.in);
+    public void signIn(Admin admin , Passengers[] passengers)
+    {
+        System.out.println("enter username : ");
+        String username = scanner.next();
+        System.out.println("enter password : ");
+        String password = scanner.next();
+
+        if(admin.getAdminUserName().equals(username))
+        {
+            if(admin.getAdminPassword().equals(password))
+            {
+                admin.adminMenu();
+                return;
+            }
+            else
+            {
+                System.out.println("Wrong password!!!");
+
+            }
+        }
+        for (int i = 0; i < passengers.length; i++) {
+
+            if(passengers[i] != null)
+            {
+
+
+                if (passengers[i].getUserName().equals(username)) {
+                    if (passengers[i].getPassword().equals(password)) {
+                        System.out.println("\n\nLogin was successful :) \n\n");
+//                        passengers.passengerMenu();
+//                        passengers.passengerSwitch(users);
+                            return;
+                    } else {
+                        System.out.println("wrong password!!!!!!!\n\n\n");
+                        signIn(admin, passengers);
+
+                    }
+                }
+
+            }
+        }
+        System.out.println("wrong user!!!!!!!!!!\n ");
+        signIn(admin, passengers);
+    }
 }
