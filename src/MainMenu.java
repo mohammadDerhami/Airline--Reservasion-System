@@ -16,7 +16,7 @@ public class MainMenu
                 "    <1> Sign in\n" +
                 "    <2> Sign up ");
     }
-    public void switchMethod(Passengers[] passengers , Admin admin)
+    public void switchMethod(Passengers[] passengers , Admin admin , Flights flights)
     {
 
         while (true)
@@ -27,7 +27,7 @@ public class MainMenu
             switch (number) {
                 case "1": {
                     SignIn signIn = new SignIn();
-                    signIn.signIn( admin ,passengers);
+                    signIn.signIn( admin ,passengers ,flights);
                         break;
 
                 }
@@ -39,7 +39,7 @@ public class MainMenu
                 }
                 default: {
                     System.out.println("Wrong number ");
-                    switchMethod( passengers , admin);
+                    switchMethod( passengers , admin , flights);
                         break;
 
                 }

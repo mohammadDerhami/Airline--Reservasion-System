@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class SignIn {
     public Scanner scanner = new Scanner(System.in);
-    public void signIn(Admin admin , Passengers[] passengers)
+    public void signIn(Admin admin , Passengers[] passengers , Flights flights)
     {
         System.out.println("enter username : ");
         String username = scanner.next();
@@ -16,11 +16,13 @@ public class SignIn {
             if(admin.getAdminPassword().equals(password))
             {
                 admin.adminMenu();
+                admin.adminSwitch(flights);
                 return;
             }
             else
             {
                 System.out.println("Wrong password!!!");
+                signIn(admin, passengers, flights);
 
             }
         }
@@ -38,7 +40,7 @@ public class SignIn {
                             return;
                     } else {
                         System.out.println("wrong password!!!!!!!\n\n\n");
-                        signIn(admin, passengers);
+                        signIn(admin, passengers ,flights);
 
                     }
                 }
@@ -46,6 +48,6 @@ public class SignIn {
             }
         }
         System.out.println("wrong user!!!!!!!!!!\n ");
-        signIn(admin, passengers);
+        signIn(admin, passengers ,flights);
     }
 }
