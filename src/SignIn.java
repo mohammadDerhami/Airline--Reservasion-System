@@ -35,8 +35,7 @@ public class SignIn {
                 if (passengers[i].getUserName().equals(username)) {
                     if (passengers[i].getPassword().equals(password)) {
                         System.out.println("\n\nLogin was successful :) \n\n");
-//                        passengers.passengerMenu();
-//                        passengers.passengerSwitch(users);
+                           passengers[i].passengersSwitch();
                             return;
                     } else {
                         System.out.println("wrong password!!!!!!!\n\n\n");
@@ -47,7 +46,7 @@ public class SignIn {
 
             }
         }
-      //  System.out.println("wrong user!!!!!!!!!!\n ");
+        System.out.println("wrong user!!!!!!!!!!\n ");
         signIn(admin, passengers ,flights);
     }
 }
