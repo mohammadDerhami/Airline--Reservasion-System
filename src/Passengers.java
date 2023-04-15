@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Passengers {
     private String userName;
     private String password;
-    private double credit = 0 ;
+    private double CREDIT = 0 ;
     Scanner scanner = new Scanner(System.in);
 
     public void printPassengersMenu()
@@ -21,7 +21,7 @@ public class Passengers {
                 "    <6> Add charge\n" +
                 "    <0> Sign out");
     }
-    public void passengersSwitch()
+    public void passengersSwitch(Flights flights)
     {
 
         while (true)
@@ -32,42 +32,48 @@ public class Passengers {
             {
                 case "1":
                 {
-                        passengersChangePassword();
-                        passengersSwitch();
+                        passengersChangePassword(flights);
+                        passengersSwitch(flights);
                         break;
                 }
                 case "2":
                 {
-
+                        searchFlightTickets(flights);
+                        break;
                 }
                 case "3":
                 {
-
+                        break;
                 }
                 case "4":
                 {
-
+                        break;
                 }
                 case "5":
                 {
-
+                        break;
                 }
                 case "6":
                 {
                     passengersAddCharge();
-                    passengersSwitch();
+                    passengersSwitch(flights);
                     break;
                 }
                 case "0":
                 {
                     return;
                 }
+                default:
+                {
+                    System.out.println("Wrong number !!!");
+                    passengersSwitch(flights);
+                }
             }
         }
 
 
     }
-    public void passengersChangePassword()
+    public void passengersChangePassword(Flights flights)
     {
 
         System.out.println("enter your password : ");
@@ -79,31 +85,198 @@ public class Passengers {
                     System.out.println("enter new password : ");
                     setPassword(scanner.next());
                     System.out.println("your password is change :)");
-                    passengersSwitch();
+                    passengersSwitch(flights);
                 }
                 else
                 {
                     System.out.println("password is Wrong !!! ");
-                    passengersChangePassword();
+                    passengersChangePassword(flights);
                 }
 
 
 
     }
     public void passengersAddCharge()
+
     {
 
 
         System.out.println("how much do you want to increase your credit ?? ");
         int increaseCredit = scanner.nextInt();
-        credit = credit + increaseCredit;
+        CREDIT = CREDIT + increaseCredit;
 
-        System.out.println("your credit is "+credit+" $");
+        System.out.println("your credit is "+CREDIT+" $");
 
 
     }
+    public void searchFlightTickets(Flights flights)
+    {
+        while (true)
+        {
+            System.out.println("\n\n\n");
+            searchFlightTicketsMenu();
+            switch (scanner.next())
+            {
+                case "1":
+                {
+                    System.out.println("enter id of flight : ");
+                    String idOfFlight = scanner.next();
+                    searchId(flights , idOfFlight);
+                    break;
+                }
+                case "2":
+                {
+                    System.out.println("enter origin of flight : ");
+                    String origin = scanner.next();
+                    searchOrigin(flights , origin);
+                    break;
+                }
+                case "3":
+                {
+                    System.out.println("enter distination of flight : ");;
+                    String distination = scanner.next();
+                    searchDestinition(flights , distination);
+                    break;
+                }
+                case "4":
+                {
+                    System.out.println("enter date of flight : ");
+                    String date = scanner.next();
+                    searchDate(flights , date);
+                    break;
+                }
+                case "5":
+                {
+                    System.out.println("enter time of flight : ");
+                    String time = scanner.next();
+                    searchTime(flights , time);
+                    break;
+                }
+                case "6":
+                {
+                    System.out.println("enter min price : ");
+                    double min = scanner.nextDouble();
+                    System.out.println("enter max price : ");
+                    double  max = scanner.nextDouble();
+                    searchPrice(flights , min , max);
+                    break;
+
+                }
+                case "0":
+                {
+                    passengersSwitch(flights);
+                    break;
+                }
+                default:
+                {
+                    System.out.println("Wrong number !!!!");
+                    searchFlightTickets(flights);
+                    break;
+
+                }
+            }
+        }
+
+    }
+    public void searchFlightTicketsMenu()
+    {
+        System.out.println("1: FlightId\n2: Origin\n3: Destination\n4: Date\n5: Time\n6: Price range\n0: back \n");
+        System.out.println("enter your number : ");
+    }
+    public void searchId(Flights flights , String id)
+    {
+        System.out.printf("|%-15s |%-15s |%-15s |%-15s |%-15s |%-15s |%-15s \n", "FlightId", "Origin", "Destination", "Date", "Time", "Price", "seats");
+        System.out.printf("...........................................................................................................%n");
+        for (int i = 0; i < flights.flight.length ; i++) {
+            if(flights.flight[i] != null)
+            {
+                if(flights.flight[i].getFlightId().equals(id))
+                {
+                    System.out.printf("|%-15s |%-15s |%-15s |%-15s|%-15s |%-15s |%-15s \n", flights.flight[i].getFlightId(), flights.flight[i].getOrigin(), flights.flight[i].getDestination(), flights.flight[i].getDate(), flights.flight[i].getTime(), flights.flight[i].getPrice(), flights.flight[i].getSeats());
+                    System.out.printf("...........................................................................................................%n");
+                }
+            }
+        }
+
+    }
+    public void searchOrigin(Flights flights , String origin)
+    {
+        System.out.printf("|%-15s |%-15s |%-15s |%-15s |%-15s |%-15s |%-15s \n", "FlightId", "Origin", "Destination", "Date", "Time", "Price", "seats");
+        System.out.printf("...........................................................................................................%n");
+        for (int i = 0; i < flights.flight.length ; i++) {
+            if(flights.flight[i] != null)
+            {
+                if(flights.flight[i].getOrigin().equals(origin))
+                {
+                    System.out.printf("|%-15s |%-15s |%-15s |%-15s|%-15s |%-15s |%-15s \n", flights.flight[i].getFlightId(), flights.flight[i].getOrigin(), flights.flight[i].getDestination(), flights.flight[i].getDate(), flights.flight[i].getTime(), flights.flight[i].getPrice(), flights.flight[i].getSeats());
+                    System.out.printf("...........................................................................................................%n");
+                }
+            }
+        }
 
 
+    }
+    public void searchDate(Flights flights , String date)
+    {
+        System.out.printf("|%-15s |%-15s |%-15s |%-15s |%-15s |%-15s |%-15s \n", "FlightId", "Origin", "Destination", "Date", "Time", "Price", "seats");
+        System.out.printf("...........................................................................................................%n");
+        for (int i = 0; i < flights.flight.length ; i++) {
+            if(flights.flight[i] != null)
+            {
+                if(flights.flight[i].getDate().equals(date))
+                {
+                    System.out.printf("|%-15s |%-15s |%-15s |%-15s|%-15s |%-15s |%-15s \n", flights.flight[i].getFlightId(), flights.flight[i].getOrigin(), flights.flight[i].getDestination(), flights.flight[i].getDate(), flights.flight[i].getTime(), flights.flight[i].getPrice(), flights.flight[i].getSeats());
+                    System.out.printf("...........................................................................................................%n");
+                }
+            }
+        }
+    }
+    public void searchTime(Flights flights , String time)
+    {
+        System.out.printf("|%-15s |%-15s |%-15s |%-15s |%-15s |%-15s |%-15s \n", "FlightId", "Origin", "Destination", "Date", "Time", "Price", "seats");
+        System.out.printf("...........................................................................................................%n");
+        for (int i = 0; i < flights.flight.length ; i++) {
+            if(flights.flight[i] != null)
+            {
+                if(flights.flight[i].getTime().equals(time))
+                {
+                    System.out.printf("|%-15s |%-15s |%-15s |%-15s|%-15s |%-15s |%-15s \n", flights.flight[i].getFlightId(), flights.flight[i].getOrigin(), flights.flight[i].getDestination(), flights.flight[i].getDate(), flights.flight[i].getTime(), flights.flight[i].getPrice(), flights.flight[i].getSeats());
+                    System.out.printf("...........................................................................................................%n");
+                }
+            }
+        }
+    }
+    public void searchDestinition(Flights flights , String distination)
+    {
+        System.out.printf("|%-15s |%-15s |%-15s |%-15s |%-15s |%-15s |%-15s \n", "FlightId", "Origin", "Destination", "Date", "Time", "Price", "seats");
+        System.out.printf("...........................................................................................................%n");
+        for (int i = 0; i < flights.flight.length ; i++) {
+            if(flights.flight[i] != null)
+            {
+                if(flights.flight[i].getDestination().equals(distination))
+                {
+                    System.out.printf("|%-15s |%-15s |%-15s |%-15s|%-15s |%-15s |%-15s \n", flights.flight[i].getFlightId(), flights.flight[i].getOrigin(), flights.flight[i].getDestination(), flights.flight[i].getDate(), flights.flight[i].getTime(), flights.flight[i].getPrice(), flights.flight[i].getSeats());
+                    System.out.printf("...........................................................................................................%n");
+                }
+            }
+        }
+    }
+
+    public void searchPrice(Flights flights , double minPrice , double maxPrice)
+    {
+        System.out.printf("|%-15s |%-15s |%-15s |%-15s |%-15s |%-15s |%-15s \n", "FlightId", "Origin", "Destination", "Date", "Time", "Price", "seats");
+        System.out.printf("...........................................................................................................%n");
+        for (int i = 0; i < flights.flight.length ; i++) {
+            if(flights.flight[i] != null)
+            {
+                if(maxPrice >= flights.flight[i].getPrice() && flights.flight[i].getPrice() >= minPrice )
+                {
+                    System.out.printf("|%-15s |%-15s |%-15s |%-15s|%-15s |%-15s |%-15s \n", flights.flight[i].getFlightId(), flights.flight[i].getOrigin(), flights.flight[i].getDestination(), flights.flight[i].getDate(), flights.flight[i].getTime(), flights.flight[i].getPrice(), flights.flight[i].getSeats());
+                    System.out.printf("...........................................................................................................%n");
+                }
+            }
+        }
+    }
     public String getUserName() {
         return userName;
     }
@@ -121,10 +294,10 @@ public class Passengers {
     }
 
     public double getCredit() {
-        return credit;
+        return CREDIT;
     }
 
     public void setCredit(double credit) {
-        this.credit = credit;
+        this.CREDIT = CREDIT;
     }
 }

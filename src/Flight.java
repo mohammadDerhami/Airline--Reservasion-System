@@ -6,13 +6,13 @@ public class Flight {
     private String destination;
     private String date;
     private String time;
-    private String price;
+    private double price;
     private String seats;
 
     public Flight() {
     }
 
-    public Flight(String flightId, String origin, String destination, String date, String time, String price, String seats) {
+    public Flight(String flightId, String origin, String destination, String date, String time, double price, String seats) {
         this.flightId = flightId;
         this.origin = origin;
         this.destination = destination;
@@ -62,12 +62,12 @@ public class Flight {
         this.time = time;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
     public void setPrice(String price) {
-        this.price = price;
+        this.price = Double.parseDouble(price);
     }
 
     public String getSeats() {

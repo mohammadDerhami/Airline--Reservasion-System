@@ -35,7 +35,7 @@ public class SignIn {
                 if (passengers[i].getUserName().equals(username)) {
                     if (passengers[i].getPassword().equals(password)) {
                         System.out.println("\n\nLogin was successful :) \n\n");
-                           passengers[i].passengersSwitch();
+                           passengers[i].passengersSwitch(flights);
                            return;
 
 

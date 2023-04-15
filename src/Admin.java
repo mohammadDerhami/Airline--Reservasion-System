@@ -117,78 +117,78 @@ public class Admin {
     }
 
     public void adminUPdateTable() {
-        System.out.println("1: FlightId\n2: Origin\n3: Destination\n4: Date\n5: Time\n6: Price\n7: Seats\n8: back \n");
+        System.out.println("1: FlightId\n2: Origin\n3: Destination\n4: Date\n5: Time\n6: Price\n7: Seats\n0: back \n");
         System.out.println("enter your number : ");
     }
 
     public void adminUpdate(Flights flights) {
-        int indexOfFlight = searchIdOfFlight(flights);
-       if(indexOfFlight == -1)
-       {
-           System.out.println("Wrong id !!!");
-           adminUpdate(flights);
-       }
+        System.out.println("enter id of flight : ");
+        String idOfFlight = scanner.next();
+        int indexOfFlight = searchIdOfFlight(flights , idOfFlight);
+        if (indexOfFlight == -1) {
+            System.out.println("Wrong id !!!");
+            adminUpdate(flights);
+        }
 
 
-
-        while (true)
-        {
+        while (true) {
             adminUPdateTable();
 
             switch (scanner.next()) {
                 case "1": {
                     System.out.println("enter new FlightId : ");
                     flights.flight[indexOfFlight].setFlightId(scanner.next());
-                    System.out.println("successful :)");
+                    System.out.println("\nsuccessful :)\n");
                     break;
 
                 }
                 case "2": {
                     System.out.println("enter new Origin : ");
                     flights.flight[indexOfFlight].setOrigin(scanner.next());
-                    System.out.println("successful :)");
+                    System.out.println("\nsuccessful :)\n");
                     break;
                 }
                 case "3": {
                     System.out.println("enter new Destination : ");
                     flights.flight[indexOfFlight].setDestination(scanner.next());
-                    System.out.println("successful :)");
+                    System.out.println("\nsuccessful :)\n");
                     break;
                 }
                 case "4": {
                     System.out.println("enter new Date : ");
                     flights.flight[indexOfFlight].setDate(scanner.next());
-                    System.out.println("successful :)");
+                    System.out.println("\nsuccessful :)\n");
                     break;
 
                 }
                 case "5": {
                     System.out.println("enter new Time : ");
                     flights.flight[indexOfFlight].setTime(scanner.next());
-                    System.out.println("successful :)");
+                    System.out.println("\nsuccessful :)\n");
                     break;
                 }
                 case "6": {
                     System.out.println("enter new Price : ");
                     flights.flight[indexOfFlight].setPrice(scanner.next());
-                    System.out.println("successful :)");
+                    System.out.println("\nsuccessful :)\n");
                     break;
                 }
                 case "7": {
                     System.out.println("enter new Seats : ");
                     flights.flight[indexOfFlight].setSeats(scanner.next());
-                    System.out.println("successful :)");
+                    System.out.println("\nsuccessful :)\n");
                     break;
 
                 }
-                case "8": {
-                    return;
+                case "0": {
+                   adminMenu();
+                   adminSwitch(flights);
 
                 }
                 default: {
                     System.out.println("Wrong number !!!");
-                    adminUpdate(flights);
                     break;
+
                 }
 
             }
@@ -199,32 +199,31 @@ public class Admin {
 
     public void adminRemove(Flights flights) {
 
-        int indexOfFlight = searchIdOfFlight(flights);
-        if(indexOfFlight == -1)
-        {
+        System.out.println("enter id of flight : ");
+        String idOfFlight = scanner.next();
+        int indexOfFlight = searchIdOfFlight(flights , idOfFlight );
+        if (indexOfFlight == -1) {
             System.out.println("Wrong id !!!");
             adminRemove(flights);
         }
         flights.flight[indexOfFlight] = null;
-        System.out.println("successful :)");
-        return;
+        System.out.println("\nsuccessful :)\n");
+
 
 
     }
-    public int searchIdOfFlight(Flights flights)
-    {
-        System.out.println("enter id of flight : ");
-        String idOfFlight = scanner.next();
-        for (int i = 0; i < flights.flight.length ; i++) {
-            if (flights.flight[i] != null)
-            {
-                if(flights.flight[i].getFlightId().equals(idOfFlight))
-                {
+
+    public int searchIdOfFlight(Flights flights , String idOfFlight) {
+
+        for (int i = 0; i < flights.flight.length; i++) {
+            if (flights.flight[i] != null) {
+                if (flights.flight[i].getFlightId().equals(idOfFlight)) {
                     return i;
                 }
             }
 
         }
         return -1;
+
     }
 }
