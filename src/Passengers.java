@@ -7,7 +7,7 @@ public class Passengers {
     private String userName;
     private String password;
     private double CREDIT = 0 ;
-    public static String[] ticketId = new String[20];
+    public  String[] ticketId = new String[20];
     Scanner scanner = new Scanner(System.in);
 
     public void printPassengersMenu()
@@ -159,24 +159,28 @@ public class Passengers {
     }
     public void ticketCancel(Flights flights , Passengers[] passengers)
     {
-        System.out.println("enter your ticket id : ");
-        String ticketId = scanner.next();
-        for (int i = 0; i < flights.flight.length; i++) {
-
-            if(ticketId!=null)
+        System.out.println("enter ticket id : ");
+        String ticketid2 = scanner.next();
+        for (int i = 0; i < ticketId.length; i++) {
+            if(ticketId[i]!=null && ticketId[i].equals(ticketid2))
             {
-                if (ticketId.startsWith(flights.flight[i].getFlightId())) {
-                    flights.flight[i].setSeats(flights.flight[i].getSeats() + 1);
-                    setCREDIT(getCREDIT() + flights.flight[i].getPrice());
-                    ticketId = null;
-                    System.out.println(" seccesfull :) ");
-                    passengersSwitch(flights, passengers);
-
+                for (int j = 0; j < flights.flight.length; j++) {
+                    if(flights.flight[j] != null)
+                    {
+                        if (ticketid2.startsWith(flights.flight[j].getFlightId())) {
+                            flights.flight[j].setSeats(flights.flight[j].getSeats() + 1);
+                            setCREDIT(getCREDIT() + flights.flight[j].getPrice());
+                            ticketId[i] = null;
+                            System.out.println(" seccesful :) ");
+                            passengersSwitch(flights, passengers);
+                        }
+                    }
                 }
             }
         }
-        System.out.println("Wrong ticket id !!!!");
+        System.out.println("Wrong ticket id !!!");
         ticketCancel(flights, passengers);
+
     }
     public void searchFlightTickets(Flights flights , Passengers[] passengers)
     {
