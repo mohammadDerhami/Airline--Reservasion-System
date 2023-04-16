@@ -1,7 +1,7 @@
 package src;
 
 public class Flights {
-    public Flight[] flight = new Flight[25];
+    public Flight[] flight = new Flight[50];
     public void defFlights(Flights flights)
     {
         flights.flight[0] = new Flight("GT-25" , "Yazd" , "tehran" , "1402/03/25","22:10",700000,"25");

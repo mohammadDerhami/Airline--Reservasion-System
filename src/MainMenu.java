@@ -27,7 +27,7 @@ public class MainMenu
             switch (number) {
                 case "1": {
                     SignIn signIn = new SignIn();
-                    signIn.signIn( admin ,passengers ,flights);
+                    signIn.signInMethod( admin ,passengers ,flights);
                         break;
 
                 }

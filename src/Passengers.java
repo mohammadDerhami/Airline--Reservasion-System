@@ -7,7 +7,7 @@ public class Passengers {
     private String userName;
     private String password;
     private double CREDIT = 0 ;
-    public  String[] ticketId = new String[20];
+    private   String[] ticketId = new String[20];
     Scanner scanner = new Scanner(System.in);
 
     public void printPassengersMenu()
@@ -35,7 +35,7 @@ public class Passengers {
                 case "1":
                 {
                         passengersChangePassword(flights , passengers);
-                        passengersSwitch(flights , passengers);
+
                         break;
                 }
                 case "2":
@@ -61,7 +61,7 @@ public class Passengers {
                 case "6":
                 {
                     passengersAddCharge();
-                    passengersSwitch(flights , passengers);
+
                     break;
                 }
                 case "0":
@@ -71,7 +71,7 @@ public class Passengers {
                 default:
                 {
                     System.out.println("Wrong number !!!");
-                    passengersSwitch(flights , passengers);
+                    break;
                 }
             }
         }

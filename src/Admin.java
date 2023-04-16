@@ -6,15 +6,7 @@ public class Admin {
     public Scanner scanner = new Scanner(System.in);
 
     public void adminMenu() {
-        System.out.println("           Admin MENUE OPTIONS\n"
-                + " ......................................\n"
-                + "    <1> Add\n"
-                + "    <2> Update\n"
-                + "    <3> Remove\n"
-                +
-                "    <4> Flight schedules\n"
-                +
-                "    <0> Sign out");
+        System.out.println("           Admin MENUE OPTIONS\n" + " ......................................\n" + "    <1> Add\n" + "    <2> Update\n" + "    <3> Remove\n" + "    <4> Flight schedules\n" + "    <0> Sign out");
     }
 
     public String getAdminUserName() {
@@ -30,6 +22,7 @@ public class Admin {
     public void adminSwitch(Flights flights) {
         System.out.println("enter your number : ");
         String number = scanner.next();
+
         switch (number) {
             case "1": {
                 adminAdd(flights);
@@ -63,7 +56,7 @@ public class Admin {
 
             }
             case "0": {
-                return;
+                break;
 
             }
             default: {
@@ -124,7 +117,7 @@ public class Admin {
     public void adminUpdate(Flights flights) {
         System.out.println("enter id of flight : ");
         String idOfFlight = scanner.next();
-        int indexOfFlight = searchIdOfFlight(flights , idOfFlight);
+        int indexOfFlight = searchIdOfFlight(flights, idOfFlight);
         if (indexOfFlight == -1) {
             System.out.println("Wrong id !!!");
             adminUpdate(flights);
@@ -181,8 +174,8 @@ public class Admin {
 
                 }
                 case "0": {
-                   adminMenu();
-                   adminSwitch(flights);
+                    adminMenu();
+                    adminSwitch(flights);
 
                 }
                 default: {
@@ -201,19 +194,22 @@ public class Admin {
 
         System.out.println("enter id of flight : ");
         String idOfFlight = scanner.next();
-        int indexOfFlight = searchIdOfFlight(flights , idOfFlight );
+        int indexOfFlight = searchIdOfFlight(flights, idOfFlight);
         if (indexOfFlight == -1) {
             System.out.println("Wrong id !!!");
             adminRemove(flights);
         }
-        flights.flight[indexOfFlight] = null;
-        System.out.println("\nsuccessful :)\n");
+        else
+        {
+            flights.flight[indexOfFlight] = null;
+            System.out.println("\nsuccessful :)\n");
+        }
 
 
 
     }
 
-    public int searchIdOfFlight(Flights flights , String idOfFlight) {
+    public int searchIdOfFlight(Flights flights, String idOfFlight) {
 
         for (int i = 0; i < flights.flight.length; i++) {
             if (flights.flight[i] != null) {
