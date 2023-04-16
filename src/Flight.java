@@ -7,7 +7,7 @@ public class Flight {
     private String date;
     private String time;
     private double price;
-    private String seats;
+    private int seats;
 
     public Flight() {
     }
@@ -19,7 +19,7 @@ public class Flight {
         this.date = date;
         this.time = time;
         this.price = price;
-        this.seats = seats;
+        this.seats = Integer.parseInt(seats);
     }
 
     public String getFlightId() {
@@ -70,11 +70,11 @@ public class Flight {
         this.price = Double.parseDouble(price);
     }
 
-    public String getSeats() {
+    public int getSeats() {
         return seats;
     }
 
-    public void setSeats(String seats) {
+    public void setSeats(int seats) {
         this.seats = seats;
     }
 }

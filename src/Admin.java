@@ -94,7 +94,7 @@ public class Admin {
                 System.out.println("enter price : ");
                 flights.flight[i].setPrice(scanner.next());
                 System.out.println("enter seats : ");
-                flights.flight[i].setSeats(scanner.next());
+                flights.flight[i].setSeats(scanner.nextInt());
                 System.out.println("flight aded :) ");
                 return;
             }
@@ -175,7 +175,7 @@ public class Admin {
                 }
                 case "7": {
                     System.out.println("enter new Seats : ");
-                    flights.flight[indexOfFlight].setSeats(scanner.next());
+                    flights.flight[indexOfFlight].setSeats(scanner.nextInt());
                     System.out.println("\nsuccessful :)\n");
                     break;
 

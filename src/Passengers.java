@@ -1,11 +1,13 @@
 package src;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Passengers {
     private String userName;
     private String password;
     private double CREDIT = 0 ;
+    private String ticketId ;
     Scanner scanner = new Scanner(System.in);
 
     public void printPassengersMenu()
@@ -21,7 +23,7 @@ public class Passengers {
                 "    <6> Add charge\n" +
                 "    <0> Sign out");
     }
-    public void passengersSwitch(Flights flights)
+    public void passengersSwitch(Flights flights , Passengers [] passengers)
     {
 
         while (true)
@@ -32,17 +34,18 @@ public class Passengers {
             {
                 case "1":
                 {
-                        passengersChangePassword(flights);
-                        passengersSwitch(flights);
+                        passengersChangePassword(flights , passengers);
+                        passengersSwitch(flights , passengers);
                         break;
                 }
                 case "2":
                 {
-                        searchFlightTickets(flights);
+                        searchFlightTickets(flights , passengers);
                         break;
                 }
                 case "3":
                 {
+                        bookingTicket(flights , passengers);
                         break;
                 }
                 case "4":
@@ -56,7 +59,7 @@ public class Passengers {
                 case "6":
                 {
                     passengersAddCharge();
-                    passengersSwitch(flights);
+                    passengersSwitch(flights , passengers);
                     break;
                 }
                 case "0":
@@ -66,14 +69,14 @@ public class Passengers {
                 default:
                 {
                     System.out.println("Wrong number !!!");
-                    passengersSwitch(flights);
+                    passengersSwitch(flights , passengers);
                 }
             }
         }
 
 
     }
-    public void passengersChangePassword(Flights flights)
+    public void passengersChangePassword(Flights flights , Passengers[] passengers)
     {
 
         System.out.println("enter your password : ");
@@ -85,12 +88,12 @@ public class Passengers {
                     System.out.println("enter new password : ");
                     setPassword(scanner.next());
                     System.out.println("your password is change :)");
-                    passengersSwitch(flights);
+                    passengersSwitch(flights , passengers);
                 }
                 else
                 {
                     System.out.println("password is Wrong !!! ");
-                    passengersChangePassword(flights);
+                    passengersChangePassword(flights , passengers);
                 }
 
 
@@ -109,7 +112,46 @@ public class Passengers {
 
 
     }
-    public void searchFlightTickets(Flights flights)
+    public void bookingTicket(Flights flights , Passengers[] passengers)
+    {
+        if (getTicketId() != null)
+        {
+            System.out.println("you cant booking new flight \nfirst , cancel the previous flight\n");
+            passengersSwitch(flights, passengers);
+        }
+        Random random = new Random();
+        int randomNumber = random.nextInt(1000);
+        System.out.println("enter id of flight : ");
+        String id = scanner.next();
+        for (int i = 0; i < flights.flight.length; i++) {
+            if(flights.flight[i]!=null)
+            {
+                if (flights.flight[i].getFlightId().equals(id)) {
+                    if (flights.flight[i].getSeats() >= 1) {
+                        if (getCREDIT() >= flights.flight[i].getPrice()) {
+                            int seats = flights.flight[i].getSeats() - 1;
+                            setCREDIT(getCREDIT()-flights.flight[i].getPrice());
+                            flights.flight[i].setSeats(seats);
+                            setTicketId(flights.flight[i].getFlightId() + "-" + randomNumber);
+                            System.out.println("your ticketId is : " + getTicketId() + "\nplease make a note  ");
+                           passengersSwitch(flights, passengers);
+                        }
+                        else
+                        {
+                            System.out.println("your credit is not enough !!!");
+                           passengersSwitch(flights, passengers);
+                        }
+                    } else {
+                        System.out.println("The flight is fully booked !!!");
+                        passengersSwitch(flights, passengers);
+                    }
+                }
+            }
+        }
+        System.out.println("Wrong id !!!\n");
+        bookingTicket(flights, passengers);
+    }
+    public void searchFlightTickets(Flights flights , Passengers[] passengers)
     {
         while (true)
         {
@@ -164,13 +206,13 @@ public class Passengers {
                 }
                 case "0":
                 {
-                    passengersSwitch(flights);
+                    passengersSwitch(flights ,passengers );
                     break;
                 }
                 default:
                 {
                     System.out.println("Wrong number !!!!");
-                    searchFlightTickets(flights);
+                    searchFlightTickets(flights , passengers);
                     break;
 
                 }
@@ -299,5 +341,21 @@ public class Passengers {
 
     public void setCredit(double credit) {
         this.CREDIT = CREDIT;
+    }
+
+    public double getCREDIT() {
+        return CREDIT;
+    }
+
+    public void setCREDIT(double CREDIT) {
+        this.CREDIT = CREDIT;
+    }
+
+    public String getTicketId() {
+        return ticketId;
+    }
+
+    public void setTicketId(String ticketId) {
+        this.ticketId = ticketId;
     }
 }
