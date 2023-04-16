@@ -55,6 +55,7 @@ public class Passengers {
                 }
                 case "5":
                 {
+                    bookedTicket(flights, passengers);
                         break;
                 }
                 case "6":
@@ -181,6 +182,16 @@ public class Passengers {
         System.out.println("Wrong ticket id !!!");
         ticketCancel(flights, passengers);
 
+    }
+    public void bookedTicket(Flights flights , Passengers[] passengers)
+    {
+        System.out.println("your tickets id  :  \n");
+        for (int i = 0; i < ticketId.length; i++) {
+            if(ticketId[i] != null)
+            {
+                System.out.println(ticketId[i]);
+            }
+        }
     }
     public void searchFlightTickets(Flights flights , Passengers[] passengers)
     {
