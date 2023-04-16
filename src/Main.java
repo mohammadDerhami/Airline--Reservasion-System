@@ -3,6 +3,7 @@ package src;
 public class Main
 {
     public static Passengers[] passengers = new Passengers[20];
+
     public static Admin admin = new Admin();
     public static Flights flights = new Flights();
     public static void main(String[] args) {

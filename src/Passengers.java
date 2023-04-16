@@ -7,7 +7,7 @@ public class Passengers {
     private String userName;
     private String password;
     private double CREDIT = 0 ;
-    private String ticketId ;
+    public static String[] ticketId = new String[20];
     Scanner scanner = new Scanner(System.in);
 
     public void printPassengersMenu()
@@ -115,11 +115,7 @@ public class Passengers {
     }
     public void bookingTicket(Flights flights , Passengers[] passengers)
     {
-        if (getTicketId() != null)
-        {
-            System.out.println("you cant booking new flight \nfirst , cancel the previous flight\n");
-            passengersSwitch(flights, passengers);
-        }
+        System.out.println("your charge : "+getCredit());
         Random random = new Random();
         int randomNumber = random.nextInt(1000);
         System.out.println("enter id of flight : ");
@@ -127,15 +123,24 @@ public class Passengers {
         for (int i = 0; i < flights.flight.length; i++) {
             if(flights.flight[i]!=null)
             {
-                if (flights.flight[i].getFlightId().equals(id)) {
-                    if (flights.flight[i].getSeats() >= 1) {
-                        if (getCREDIT() >= flights.flight[i].getPrice()) {
-                            int seats = flights.flight[i].getSeats() - 1;
+                if (flights.flight[i].getFlightId().equals(id))
+                {
+                    if (flights.flight[i].getSeats() >= 1)
+                    {
+                        if (getCREDIT() >= flights.flight[i].getPrice())
+                        {
+
                             setCREDIT(getCREDIT()-flights.flight[i].getPrice());
-                            flights.flight[i].setSeats(seats);
-                            setTicketId(flights.flight[i].getFlightId() + "-" + randomNumber);
-                            System.out.println("your ticketId is : " + getTicketId() + "\nplease make a note  ");
-                           passengersSwitch(flights, passengers);
+                            flights.flight[i].setSeats(flights.flight[i].getSeats() - 1);
+                            for (int j = 0; j < ticketId.length; j++) {
+                                if(ticketId[j] == null)
+                                {
+
+                                    ticketId[j] = flights.flight[i].getFlightId() + "-" + randomNumber;
+                                    System.out.println("your ticketId is : " + ticketId[j] + "\nplease make a note  ");
+                                    passengersSwitch(flights, passengers);
+                                }
+                            }
                         }
                         else
                         {
@@ -373,11 +378,12 @@ public class Passengers {
         this.CREDIT = CREDIT;
     }
 
-    public String getTicketId() {
+    public String[] getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(String ticketId) {
+    public void setTicketId(String[] ticketId) {
         this.ticketId = ticketId;
     }
 }
+
