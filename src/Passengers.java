@@ -50,6 +50,7 @@ public class Passengers {
                 }
                 case "4":
                 {
+                    ticketCancel(flights, passengers);
                         break;
                 }
                 case "5":
@@ -150,6 +151,27 @@ public class Passengers {
         }
         System.out.println("Wrong id !!!\n");
         bookingTicket(flights, passengers);
+    }
+    public void ticketCancel(Flights flights , Passengers[] passengers)
+    {
+        System.out.println("enter your ticket id : ");
+        String ticketId = scanner.next();
+        for (int i = 0; i < flights.flight.length; i++) {
+
+            if(ticketId!=null)
+            {
+                if (ticketId.startsWith(flights.flight[i].getFlightId())) {
+                    flights.flight[i].setSeats(flights.flight[i].getSeats() + 1);
+                    setCREDIT(getCREDIT() + flights.flight[i].getPrice());
+                    ticketId = null;
+                    System.out.println(" seccesfull :) ");
+                    passengersSwitch(flights, passengers);
+
+                }
+            }
+        }
+        System.out.println("Wrong ticket id !!!!");
+        ticketCancel(flights, passengers);
     }
     public void searchFlightTickets(Flights flights , Passengers[] passengers)
     {
