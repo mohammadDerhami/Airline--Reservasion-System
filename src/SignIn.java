@@ -15,6 +15,7 @@ public class SignIn {
         {
             if(admin.getAdminPassword().equals(password))
             {
+                System.out.println("Welcome Admin \n");
                 admin.adminMenu();
                 admin.adminSwitch(flights);
                 return;
@@ -34,7 +35,7 @@ public class SignIn {
 
                 if (passengers[i].getUserName().equals(username)) {
                     if (passengers[i].getPassword().equals(password)) {
-                        System.out.println("\n\nLogin was successful :) \n\n");
+                        System.out.println("Welcome  "+passengers[i].getUserName()+"\n");
                            passengers[i].passengersSwitch(flights , passengers);
                            return;
 

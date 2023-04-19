@@ -60,8 +60,7 @@ public class Passengers {
                 }
                 case "6":
                 {
-                    passengersAddCharge();
-
+                    passengersAddCharge(flights, passengers);
                     break;
                 }
                 case "0":
@@ -101,13 +100,17 @@ public class Passengers {
 
 
     }
-    public void passengersAddCharge()
+    public void passengersAddCharge(Flights flights , Passengers[] passengers)
 
     {
 
 
-        System.out.println("how much do you want to increase your credit ?? ");
+        System.out.println("how much do you want to increase your credit ?? ( if you want come back type(-1)) ");
         int increaseCredit = scanner.nextInt();
+        if(increaseCredit == -1)
+        {
+            passengersSwitch(flights , passengers);
+        }
         CREDIT = CREDIT + increaseCredit;
 
         System.out.println("your credit is "+CREDIT+" $");
@@ -116,11 +119,16 @@ public class Passengers {
     }
     public void bookingTicket(Flights flights , Passengers[] passengers)
     {
+        printFlightsTable(flights);
         System.out.println("your charge : "+getCredit());
         Random random = new Random();
         int randomNumber = random.nextInt(1000);
-        System.out.println("enter id of flight : ");
+        System.out.println("enter id of flight (if you want come back type(-1) : ");
         String id = scanner.next();
+        if(id.equals("-1"))
+        {
+            passengersSwitch(flights, passengers);
+        }
         for (int i = 0; i < flights.flight.length; i++) {
             if(flights.flight[i]!=null)
             {
@@ -160,8 +168,13 @@ public class Passengers {
     }
     public void ticketCancel(Flights flights , Passengers[] passengers)
     {
-        System.out.println("enter ticket id : ");
+        bookedTicket(flights , passengers);
+        System.out.println("\nenter ticket id that you want cancel it (if you want come back type(-1) :  ");
         String ticketid2 = scanner.next();
+        if(ticketid2.equals("-1"))
+        {
+            passengersSwitch(flights, passengers);
+        }
         for (int i = 0; i < ticketId.length; i++) {
             if(ticketId[i]!=null && ticketId[i].equals(ticketid2))
             {
@@ -185,7 +198,7 @@ public class Passengers {
     }
     public void bookedTicket(Flights flights , Passengers[] passengers)
     {
-        System.out.println("your tickets id  :  \n");
+        System.out.println("your tickets id  : ");
         for (int i = 0; i < ticketId.length; i++) {
             if(ticketId[i] != null)
             {
@@ -358,6 +371,18 @@ public class Passengers {
                     System.out.printf("|%-15s |%-15s |%-15s |%-15s|%-15s |%-15s |%-15s \n", flights.flight[i].getFlightId(), flights.flight[i].getOrigin(), flights.flight[i].getDestination(), flights.flight[i].getDate(), flights.flight[i].getTime(), flights.flight[i].getPrice(), flights.flight[i].getSeats());
                     System.out.printf("...........................................................................................................%n");
                 }
+            }
+        }
+    }
+    public void printFlightsTable(Flights flights)
+    {
+        System.out.printf("|%-15s |%-15s |%-15s |%-15s |%-15s |%-15s |%-15s \n", "FlightId", "Origin", "Destination", "Date", "Time", "Price", "seats");
+        System.out.printf("...........................................................................................................%n");
+        for (int i = 0; i < flights.flight.length; i++) {
+            if (flights.flight[i] != null) {
+                System.out.printf("|%-15s |%-15s |%-15s |%-15s|%-15s |%-15s |%-15s \n", flights.flight[i].getFlightId(), flights.flight[i].getOrigin(), flights.flight[i].getDestination(), flights.flight[i].getDate(), flights.flight[i].getTime(), flights.flight[i].getPrice(), flights.flight[i].getSeats());
+                System.out.printf("...........................................................................................................%n");
+
             }
         }
     }

@@ -10,6 +10,7 @@ public class Flight {
     private int seats;
 
     public Flight() {
+
     }
 
     public Flight(String flightId, String origin, String destination, String date, String time, double price, String seats) {
