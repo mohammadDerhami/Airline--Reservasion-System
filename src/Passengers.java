@@ -23,7 +23,7 @@ public class Passengers {
                 "    <6> Add charge\n" +
                 "    <0> Sign out");
     }
-    public void passengersSwitch(Flights flights , Passengers [] passengers)
+    public void passengersSwitch(Flights flights , Passengers [] passengers , MainMenu mainMenu , Admin admin)
     {
 
         while (true)
@@ -34,23 +34,23 @@ public class Passengers {
             {
                 case "1":
                 {
-                        passengersChangePassword(flights , passengers);
+                        passengersChangePassword(flights , passengers ,mainMenu ,admin);
 
                         break;
                 }
                 case "2":
                 {
-                        searchFlightTickets(flights , passengers);
+                        searchFlightTickets(flights , passengers ,mainMenu ,admin);
                         break;
                 }
                 case "3":
                 {
-                        bookingTicket(flights , passengers);
+                        bookingTicket(flights , passengers , mainMenu , admin);
                         break;
                 }
                 case "4":
                 {
-                    ticketCancel(flights, passengers);
+                    ticketCancel(flights, passengers ,mainMenu , admin);
                         break;
                 }
                 case "5":
@@ -60,12 +60,12 @@ public class Passengers {
                 }
                 case "6":
                 {
-                    passengersAddCharge(flights, passengers);
+                    passengersAddCharge(flights, passengers , mainMenu ,admin);
                     break;
                 }
                 case "0":
                 {
-                    return;
+                    mainMenu.switchMethod(passengers, admin, flights , mainMenu);
                 }
                 default:
                 {
@@ -77,7 +77,7 @@ public class Passengers {
 
 
     }
-    public void passengersChangePassword(Flights flights , Passengers[] passengers)
+    public void passengersChangePassword(Flights flights , Passengers[] passengers , MainMenu mainMenu , Admin admin)
     {
 
         System.out.println("enter your password : ");
@@ -89,18 +89,18 @@ public class Passengers {
                     System.out.println("enter new password : ");
                     setPassword(scanner.next());
                     System.out.println("your password is change :)");
-                    passengersSwitch(flights , passengers);
+                    passengersSwitch(flights , passengers , mainMenu , admin);
                 }
                 else
                 {
                     System.out.println("password is Wrong !!! ");
-                    passengersChangePassword(flights , passengers);
+                    passengersChangePassword(flights , passengers ,mainMenu , admin);
                 }
 
 
 
     }
-    public void passengersAddCharge(Flights flights , Passengers[] passengers)
+    public void passengersAddCharge(Flights flights , Passengers[] passengers , MainMenu mainMenu , Admin admin)
 
     {
 
@@ -109,7 +109,7 @@ public class Passengers {
         int increaseCredit = scanner.nextInt();
         if(increaseCredit == -1)
         {
-            passengersSwitch(flights , passengers);
+            passengersSwitch(flights , passengers , mainMenu ,admin);
         }
         CREDIT = CREDIT + increaseCredit;
 
@@ -117,7 +117,7 @@ public class Passengers {
 
 
     }
-    public void bookingTicket(Flights flights , Passengers[] passengers)
+    public void bookingTicket(Flights flights , Passengers[] passengers , MainMenu mainMenu , Admin admin)
     {
         printFlightsTable(flights);
         System.out.println("your charge : "+getCredit());
@@ -127,7 +127,7 @@ public class Passengers {
         String id = scanner.next();
         if(id.equals("-1"))
         {
-            passengersSwitch(flights, passengers);
+            passengersSwitch(flights, passengers , mainMenu ,admin);
         }
         for (int i = 0; i < flights.flight.length; i++) {
             if(flights.flight[i]!=null)
@@ -147,33 +147,33 @@ public class Passengers {
 
                                     ticketId[j] = flights.flight[i].getFlightId() + "-" + randomNumber;
                                     System.out.println("your ticketId is : " + ticketId[j] + "\nplease make a note  ");
-                                    passengersSwitch(flights, passengers);
+                                    passengersSwitch(flights, passengers , mainMenu ,admin);
                                 }
                             }
                         }
                         else
                         {
                             System.out.println("your credit is not enough !!!");
-                           passengersSwitch(flights, passengers);
+                           passengersSwitch(flights, passengers , mainMenu ,admin);
                         }
                     } else {
                         System.out.println("The flight is fully booked !!!");
-                        passengersSwitch(flights, passengers);
+                        passengersSwitch(flights, passengers , mainMenu ,admin);
                     }
                 }
             }
         }
         System.out.println("Wrong id !!!\n");
-        bookingTicket(flights, passengers);
+        bookingTicket(flights, passengers , mainMenu ,admin);
     }
-    public void ticketCancel(Flights flights , Passengers[] passengers)
+    public void ticketCancel(Flights flights , Passengers[] passengers , MainMenu mainMenu , Admin admin)
     {
         bookedTicket(flights , passengers);
         System.out.println("\nenter ticket id that you want cancel it (if you want come back type(-1) :  ");
         String ticketid2 = scanner.next();
         if(ticketid2.equals("-1"))
         {
-            passengersSwitch(flights, passengers);
+            passengersSwitch(flights, passengers,mainMenu ,admin);
         }
         for (int i = 0; i < ticketId.length; i++) {
             if(ticketId[i]!=null && ticketId[i].equals(ticketid2))
@@ -186,14 +186,14 @@ public class Passengers {
                             setCREDIT(getCREDIT() + flights.flight[j].getPrice());
                             ticketId[i] = null;
                             System.out.println(" seccesful :) ");
-                            passengersSwitch(flights, passengers);
+                            passengersSwitch(flights, passengers ,mainMenu ,admin);
                         }
                     }
                 }
             }
         }
         System.out.println("Wrong ticket id !!!");
-        ticketCancel(flights, passengers);
+        ticketCancel(flights, passengers ,mainMenu ,admin);
 
     }
     public void bookedTicket(Flights flights , Passengers[] passengers)
@@ -206,7 +206,7 @@ public class Passengers {
             }
         }
     }
-    public void searchFlightTickets(Flights flights , Passengers[] passengers)
+    public void searchFlightTickets(Flights flights , Passengers[] passengers , MainMenu mainMenu , Admin admin)
     {
         while (true)
         {
@@ -261,13 +261,13 @@ public class Passengers {
                 }
                 case "0":
                 {
-                    passengersSwitch(flights ,passengers );
+                    passengersSwitch(flights ,passengers ,mainMenu ,admin);
                     break;
                 }
                 default:
                 {
                     System.out.println("Wrong number !!!!");
-                    searchFlightTickets(flights , passengers);
+                    searchFlightTickets(flights , passengers ,mainMenu ,admin);
                     break;
 
                 }

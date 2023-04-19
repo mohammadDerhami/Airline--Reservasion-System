@@ -9,14 +9,14 @@ public class MainMenu
     public void printMenu()
     {
         System.out.println(
-                "           WELCOME TO AIRELINE RESERVATION SYSTEM\n" +
-                "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n" +
-                "..........................MENU OPTIONS........................\n" +
+                "*************************************************************\n" +
+                "************WELCOME TO AIRELINE RESERVATION SYSTEM***********\n" +
+                "*************************MENU OPTIONS************************\n" +
                 "\n" +
                 "    <1> Sign in\n" +
                 "    <2> Sign up ");
     }
-    public void switchMethod(Passengers[] passengers , Admin admin , Flights flights)
+    public void switchMethod(Passengers[] passengers , Admin admin , Flights flights , MainMenu mainMenu)
     {
 
         while (true)
@@ -27,7 +27,7 @@ public class MainMenu
             switch (number) {
                 case "1": {
                     SignIn signIn = new SignIn();
-                    signIn.signInMethod( admin ,passengers ,flights);
+                    signIn.signInMethod(admin ,passengers , flights , mainMenu);
                         break;
 
                 }
@@ -39,7 +39,7 @@ public class MainMenu
                 }
                 default: {
                     System.out.println("Wrong number ");
-                    switchMethod( passengers , admin , flights);
+                    switchMethod( passengers , admin , flights ,mainMenu);
                         break;
 
                 }
