@@ -141,6 +141,7 @@ public class Passengers {
 
                             setCREDIT(getCREDIT()-flights.flight[i].getPrice());
                             flights.flight[i].setSeats(flights.flight[i].getSeats() - 1);
+                            flights.flight[i].setNumberOfBooked(flights.flight[i].getNumberOfBooked() + 1);
                             for (int j = 0; j < ticketId.length; j++) {
                                 if(ticketId[j] == null)
                                 {

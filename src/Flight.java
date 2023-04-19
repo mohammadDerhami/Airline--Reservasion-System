@@ -8,6 +8,8 @@ public class Flight {
     private String time;
     private double price;
     private int seats;
+    private int numberOfBooked = 0;
+
 
     public Flight() {
 
@@ -77,5 +79,13 @@ public class Flight {
 
     public void setSeats(int seats) {
         this.seats = seats;
+    }
+
+    public int getNumberOfBooked() {
+        return numberOfBooked;
+    }
+
+    public void setNumberOfBooked(int numberOfBooked) {
+        this.numberOfBooked = numberOfBooked;
     }
 }

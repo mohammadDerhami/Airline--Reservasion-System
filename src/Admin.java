@@ -16,12 +16,12 @@ public class Admin {
     }
 
     public String getAdminUserName() {
-        String adminUserName = "Admin";
+        String adminUserName = "admin";
         return adminUserName;
     }
 
     public String getAdminPassword() {
-        String adminPassword = "Admin";
+        String adminPassword = "admin";
         return adminPassword;
     }
 
@@ -46,7 +46,7 @@ public class Admin {
             }
             case "3": {
                 adminFlightSchedules(flights);
-                adminRemove(flights);
+                adminRemove(flights, mainMenu, passengers, admin);
                 adminMenu();
                 adminSwitch(flights , mainMenu , passengers , admin);
 
@@ -196,19 +196,34 @@ public class Admin {
 
     }
 
-    public void adminRemove(Flights flights) {
+    public void adminRemove(Flights flights , MainMenu mainMenu , Passengers[] passengers , Admin admin) {
 
-        System.out.println("enter id of flight : ");
+        System.out.println("enter id of flight (if you want back type (-1) ");
         String idOfFlight = scanner.next();
+        if(idOfFlight.equals("-1"))
+        {
+            adminMenu();
+            adminSwitch(flights, mainMenu, passengers, admin);
+        }
         int indexOfFlight = searchIdOfFlight(flights, idOfFlight);
         if (indexOfFlight == -1) {
             System.out.println("Wrong id !!!");
-            adminRemove(flights);
+            adminRemove(flights, mainMenu, passengers, admin);
         }
         else
         {
-            flights.flight[indexOfFlight] = null;
-            System.out.println("\nsuccessful :)\n");
+           if(flights.flight[indexOfFlight].getNumberOfBooked() > 0)
+           {
+               System.out.println("you cant remove this flight \n because "+flights.flight[indexOfFlight].getNumberOfBooked()+
+                       " people have booked it \n");
+               adminMenu();
+               adminSwitch(flights , mainMenu , passengers , admin);
+           }
+           else
+            {
+                flights.flight[indexOfFlight] = null;
+                System.out.println("\nsuccessful :)\n");
+            }
         }
 
 
