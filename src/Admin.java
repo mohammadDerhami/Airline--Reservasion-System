@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Admin {
     public Scanner scanner = new Scanner(System.in);
-
+//_____________________________Admin Print Menu_____________________________________
     public void adminMenu() {
         System.out.println(
                 "           Admin MENUE OPTIONS\n" + " ......................................\n" +
@@ -14,67 +14,57 @@ public class Admin {
                 "    <4> Flight schedules\n" +
                 "    <0> Sign out");
     }
+//_____________________________Switch For Admin Menu________________________________
+public void adminSwitch(Flights flights , MainMenu mainMenu , Passengers[] passengers , Admin admin) {
+    System.out.println("enter your number : ");
+    String number = scanner.next();
 
-    public String getAdminUserName() {
-        String adminUserName = "admin";
-        return adminUserName;
-    }
+    switch (number) {
+        case "1": {
+            adminAdd(flights);
+            adminMenu();
+            adminSwitch(flights , mainMenu , passengers ,admin);
 
-    public String getAdminPassword() {
-        String adminPassword = "admin";
-        return adminPassword;
-    }
+            break;
+        }
+        case "2": {
+            adminFlightSchedules(flights);
+            adminUpdate(flights ,mainMenu ,passengers ,admin);
+            adminMenu();
+            adminSwitch(flights , mainMenu , passengers ,admin);
+            break;
+        }
+        case "3": {
+            adminFlightSchedules(flights);
+            adminRemove(flights, mainMenu, passengers, admin);
+            adminMenu();
+            adminSwitch(flights , mainMenu , passengers , admin);
 
-    public void adminSwitch(Flights flights , MainMenu mainMenu , Passengers[] passengers , Admin admin) {
-        System.out.println("enter your number : ");
-        String number = scanner.next();
-
-        switch (number) {
-            case "1": {
-                adminAdd(flights);
-                adminMenu();
-                adminSwitch(flights , mainMenu , passengers ,admin);
-
-                break;
-            }
-            case "2": {
-                adminFlightSchedules(flights);
-                adminUpdate(flights ,mainMenu ,passengers ,admin);
-                adminMenu();
-                adminSwitch(flights , mainMenu , passengers ,admin);
-                break;
-            }
-            case "3": {
-                adminFlightSchedules(flights);
-                adminRemove(flights, mainMenu, passengers, admin);
-                adminMenu();
-                adminSwitch(flights , mainMenu , passengers , admin);
-
-                break;
-
-            }
-            case "4": {
-                adminFlightSchedules(flights);
-                adminMenu();
-                adminSwitch(flights , mainMenu , passengers , admin);
-
-                break;
-
-            }
-            case "0": {
-                mainMenu.switchMethod(passengers, admin, flights, mainMenu);
-
-            }
-            default: {
-                System.out.println("Wrong number !!!!");
-                adminSwitch(flights ,mainMenu ,passengers ,admin);
-
-
-            }
+            break;
 
         }
-    }
+        case "4": {
+            adminFlightSchedules(flights);
+            adminMenu();
+            adminSwitch(flights , mainMenu , passengers , admin);
 
+            break;
+
+        }
+        case "0": {
+            mainMenu.switchMethod(passengers, admin, flights, mainMenu);
+
+        }
+        default: {
+            System.out.println("Wrong number !!!!");
+            adminSwitch(flights ,mainMenu ,passengers ,admin);
+
+
+        }
+
+    }
+}
+//________________________this method for adding flight_____________________________
     public void adminAdd(Flights flights) {
 
         for (int i = 0; i < flights.flight.length; i++) {
@@ -101,7 +91,7 @@ public class Admin {
         }
 
     }
-
+//________________________this method for printing table of flight__________________
     public void adminFlightSchedules(Flights flights) {
 
         System.out.printf("|%-15s |%-15s |%-15s |%-15s |%-15s |%-15s |%-15s \n", "FlightId", "Origin", "Destination", "Date", "Time", "Price", "seats");
@@ -114,12 +104,12 @@ public class Admin {
             }
         }
     }
-
+//________________________this method for printing menu of updating flight__________
     public void adminUPdateTable() {
         System.out.println("1: FlightId\n2: Origin\n3: Destination\n4: Date\n5: Time\n6: Price\n7: Seats\n0: back \n");
         System.out.println("enter your number : ");
     }
-
+//________________________this method for updating flight___________________________
     public void adminUpdate(Flights flights , MainMenu mainMenu , Passengers[] passengers , Admin admin) {
         System.out.println("enter id of flight : ");
         String idOfFlight = scanner.next();
@@ -195,10 +185,10 @@ public class Admin {
 
 
     }
-
+//________________________this method for removing flight___________________________
     public void adminRemove(Flights flights , MainMenu mainMenu , Passengers[] passengers , Admin admin) {
 
-        System.out.println("enter id of flight (if you want back type (-1) ");
+        System.out.println("enter id of flight (if you want back Press (-1) ");
         String idOfFlight = scanner.next();
         if(idOfFlight.equals("-1"))
         {
@@ -229,7 +219,7 @@ public class Admin {
 
 
     }
-
+//________________________this method for searching flight with id__________________
     public int searchIdOfFlight(Flights flights, String idOfFlight) {
 
         for (int i = 0; i < flights.flight.length; i++) {
@@ -242,5 +232,15 @@ public class Admin {
         }
         return -1;
 
+    }
+//_____________________________getters && setters __________________________________
+    public String getAdminUserName() {
+        String adminUserName = "admin";
+        return adminUserName;
+    }
+
+    public String getAdminPassword() {
+        String adminPassword = "admin";
+        return adminPassword;
     }
 }

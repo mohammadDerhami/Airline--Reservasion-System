@@ -9,7 +9,7 @@ public class Passengers {
     private double CREDIT = 0 ;
     private   String[] ticketId = new String[20];
     Scanner scanner = new Scanner(System.in);
-
+//______________________this method printing passengers menu___________________
     public void printPassengersMenu()
     {
         System.out.println("    PASSENGER MENU OPTIONS\n" +
@@ -23,6 +23,7 @@ public class Passengers {
                 "    <6> Add charge\n" +
                 "    <0> Sign out");
     }
+//______________________this method is switch of passengers menu_______________
     public void passengersSwitch(Flights flights , Passengers [] passengers , MainMenu mainMenu , Admin admin)
     {
 
@@ -77,6 +78,7 @@ public class Passengers {
 
 
     }
+//_______________________this method for changing password______________________
     public void passengersChangePassword(Flights flights , Passengers[] passengers , MainMenu mainMenu , Admin admin)
     {
 
@@ -100,12 +102,13 @@ public class Passengers {
 
 
     }
+//_______________________this method for adding charge__________________________
     public void passengersAddCharge(Flights flights , Passengers[] passengers , MainMenu mainMenu , Admin admin)
 
     {
 
 
-        System.out.println("how much do you want to increase your credit ?? ( if you want come back type(-1)) ");
+        System.out.println("how much do you want to increase your credit ?? ( if you want come back Press(-1)) ");
         int increaseCredit = scanner.nextInt();
         if(increaseCredit == -1)
         {
@@ -117,13 +120,14 @@ public class Passengers {
 
 
     }
+//_______________________this method for booking ticket_________________________
     public void bookingTicket(Flights flights , Passengers[] passengers , MainMenu mainMenu , Admin admin)
     {
         printFlightsTable(flights);
         System.out.println("your charge : "+getCredit());
         Random random = new Random();
         int randomNumber = random.nextInt(1000);
-        System.out.println("enter id of flight (if you want come back type(-1) : ");
+        System.out.println("enter id of flight (if you want come back Press(-1) : ");
         String id = scanner.next();
         if(id.equals("-1"))
         {
@@ -167,10 +171,11 @@ public class Passengers {
         System.out.println("Wrong id !!!\n");
         bookingTicket(flights, passengers , mainMenu ,admin);
     }
+//_______________________this method for canceling ticket_______________________
     public void ticketCancel(Flights flights , Passengers[] passengers , MainMenu mainMenu , Admin admin)
     {
         bookedTicket(flights , passengers);
-        System.out.println("\nenter ticket id that you want cancel it (if you want come back type(-1) :  ");
+        System.out.println("\nenter ticket id that you want cancel it (if you want come back Press(-1) :  ");
         String ticketid2 = scanner.next();
         if(ticketid2.equals("-1"))
         {
@@ -197,6 +202,7 @@ public class Passengers {
         ticketCancel(flights, passengers ,mainMenu ,admin);
 
     }
+//_______________________this method shows passenger's ticket___________________
     public void bookedTicket(Flights flights , Passengers[] passengers)
     {
         System.out.println("your tickets id  : ");
@@ -207,6 +213,7 @@ public class Passengers {
             }
         }
     }
+//________________________this method for searching_____________________________
     public void searchFlightTickets(Flights flights , Passengers[] passengers , MainMenu mainMenu , Admin admin)
     {
         while (true)
@@ -276,11 +283,13 @@ public class Passengers {
         }
 
     }
+//______________________________menu of search__________________________________
     public void searchFlightTicketsMenu()
     {
         System.out.println("1: FlightId\n2: Origin\n3: Destination\n4: Date\n5: Time\n6: Price range\n0: back \n");
         System.out.println("enter your number : ");
     }
+//________________________printing The flights searched by the user______________
     public void searchId(Flights flights , String id)
     {
         System.out.printf("|%-15s |%-15s |%-15s |%-15s |%-15s |%-15s |%-15s \n", "FlightId", "Origin", "Destination", "Date", "Time", "Price", "seats");
@@ -297,6 +306,7 @@ public class Passengers {
         }
 
     }
+//________________________these methods for search________________________________
     public void searchOrigin(Flights flights , String origin)
     {
         System.out.printf("|%-15s |%-15s |%-15s |%-15s |%-15s |%-15s |%-15s \n", "FlightId", "Origin", "Destination", "Date", "Time", "Price", "seats");
@@ -375,6 +385,7 @@ public class Passengers {
             }
         }
     }
+//____________________this method printing table of flight ____________________
     public void printFlightsTable(Flights flights)
     {
         System.out.printf("|%-15s |%-15s |%-15s |%-15s |%-15s |%-15s |%-15s \n", "FlightId", "Origin", "Destination", "Date", "Time", "Price", "seats");
@@ -387,6 +398,7 @@ public class Passengers {
             }
         }
     }
+//______________________getter && setter _____________________________
     public String getUserName() {
         return userName;
     }

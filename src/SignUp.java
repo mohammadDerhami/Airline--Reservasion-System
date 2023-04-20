@@ -4,14 +4,18 @@ import java.util.Scanner;
 
 public class SignUp {
     Scanner scanner = new Scanner(System.in);
-    public void SignUpMethod(Passengers[] passengers , int counter) {
+//________________________method of sign up _______________________________
+    public void signUpMethod(Passengers[] passengers, int counter) {
 
         System.out.println("enter your username :");
         passengers[counter] = new Passengers();
-        passengers[counter].setUserName(scanner.next());
-        System.out.println("enter your password ;");
-        passengers[counter].setPassword(scanner.next());
-
+        String username = scanner.next();
+        passengers[counter].setUserName(username);
+        System.out.println("enter your password :");
+        String password = scanner.next();
+        passengers[counter].setPassword(password);
+        System.out.println("Registration Was Successful ");
+        return;
 
 
     }

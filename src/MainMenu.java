@@ -6,6 +6,7 @@ public class MainMenu
 {
     public int counter = 0;
     Scanner scanner = new Scanner(System.in);
+    //___________________________Main Menu ______________________________________
     public void printMenu()
     {
         System.out.println(
@@ -16,6 +17,7 @@ public class MainMenu
                 "    <1> Sign in\n" +
                 "    <2> Sign up ");
     }
+    //___________________________Switch For Main Menu____________________________
     public void switchMethod(Passengers[] passengers , Admin admin , Flights flights , MainMenu mainMenu)
     {
 
@@ -33,9 +35,9 @@ public class MainMenu
                 }
                 case "2": {
                     SignUp signUp = new SignUp();
-                    signUp.SignUpMethod( passengers, counter);
+                    signUp.signUpMethod( passengers, counter);
                     counter++;
-                        break;
+                        switchMethod(passengers, admin, flights, mainMenu);
                 }
                 default: {
                     System.out.println("Wrong number ");

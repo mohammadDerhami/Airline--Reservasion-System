@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class SignIn {
     public Scanner scanner = new Scanner(System.in);
+//___________________________method of sign in ________________________________
     public void signInMethod(Admin admin , Passengers[] passengers , Flights flights , MainMenu mainMenu)
     {
         System.out.println("enter username : ");

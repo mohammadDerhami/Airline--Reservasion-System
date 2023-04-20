@@ -10,7 +10,7 @@ public class Flight {
     private int seats;
     private int numberOfBooked = 0;
 
-
+//_____________________constructors________________________
     public Flight() {
 
     }
@@ -24,7 +24,7 @@ public class Flight {
         this.price = price;
         this.seats = Integer.parseInt(seats);
     }
-
+//________________________getters && setters_________________
     public String getFlightId() {
         return flightId;
     }
